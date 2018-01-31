@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Angular 5</h1>
+
+
+    <div class="form-group" >
+      <label for="name">Name:</label>
+      <input  [(ngModel)]="name" type="text" id ="name" class="form-control"  required />
+<!--       {{name}} -->
+    </div>
+
+    <div class="form-group">
+      <label for="company">Company</label>
+      <input  [(ngModel)]="company" type="text" id = "company" class="form-control" />
+<!--       {{company}} -->
+    </div>
+    
+    <div class="form-group">
+      <label for="designation">Designation</label>
+      <select class="form-control" id="designation" required  [(ngModel)]="designation" >
+        <option *ngFor = "let x of listD" [value] = "x"> {{x}} </option>
+      </select>
+<!--       {{designation}} -->
+    </div>
+
+    <button type="submit" class="btn btn-default">Submit</button>
+     <button type="button" class="btn btn-default" (click) = "newquestion(name,company,designation)">Add</button>
+
+       <a routerLink="/test2" routerLinkActive="active">Test</a>
+    <router-outlet></router-outlet>
+
+</div>

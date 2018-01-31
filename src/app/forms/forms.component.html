@@ -1,0 +1,78 @@
+	<div class="container">
+	<div [hidden] = "submitted" >
+		<h3 class="formTitle">Sign Up</h3>
+		<form (ngSubmit)="onSubmit()" #form1="ngForm">
+
+			<div class ="form-group">
+				<label for="name">Name</label>
+				<input type="text" name="name" class="form-control" id="name" required 
+				[(ngModel)]="model.name" #name="ngModel">
+				<div  class="alert alert-danger" [hidden]="name.valid || name.pristine" >
+					Name is mandatory
+				</div>
+			</div>
+
+
+			<div class ="form-group">
+				<label for="company">Company</label>
+				<input type="text" name="company" class="form-control" id="company" 
+				[(ngModel)]="model.company" #company="ngModel">
+			</div>
+
+			<div class ="form-group">
+				<label for="phone">Phone</label>
+				<input type="text" name="phone" class="form-control" id="phone" required 
+				[(ngModel)]="model.phone" #phone="ngModel" 
+				pattern="[0-9]*"
+				   minlength="10"
+				   maxlength="10" >
+				<!-- <div [hidden]="!mobile.hasError('pattern')" class="alert alert-danger" >
+					Name is mandatory
+				</div> -->
+			</div>
+
+			<div class ="form-group">
+				<label for="email">Email Address</label>
+				<input type="email" name="email" class="form-control" id="email" required 
+				[(ngModel)]="model.email" #email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+				<!-- <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+					Email is mandatory
+				</div> -->
+				   <div [hidden]="!email.hasError('pattern')" class="alert alert-danger">Email format should be 
+      					<small><b>joe@abc.com</b></small>
+  					</div>
+			</div>
+
+				<br/>
+				<button type="submit" class="btn btn-success" [disabled]="!form1.form.valid">Submit</button>
+			 	<button type="button" class="btn btn-default" (click)="newForm(); form1.reset()">New Form</button>
+
+			 </form>
+			</div>
+
+
+			<div [hidden]="!submitted" class="well">
+
+				<h3>Confirm Values</h3>
+				<div class="row ">
+			      <div class="col-xs-2 "><b>Name</b></div>
+			      <div class="col-xs-9 pull-left">{{ model.name }}</div>
+			   </div>
+			    <div class="row">
+			      <div class="col-xs-2"><b>Company</b></div>
+			      <div class="col-xs-9 pull-left">{{ model.company }}</div>
+			    </div>
+			    <div class="row">
+			      <div class="col-xs-2"><b>Phone</b></div>
+			      <div class="col-xs-9 pull-left">{{ model.phone }}</div>
+			    </div>
+			    <div class="row">
+			      <div class="col-xs-2"><b>Email</b></div>
+			      <div class="col-xs-9 pull-left">{{ model.email }}</div>
+			    </div>
+			    <br>
+			    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+			    <button type="button" class="btn btn-success" [routerLink] = "['/questions']">Next</button>
+			</div>
+
+		</div>
